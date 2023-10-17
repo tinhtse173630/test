@@ -19,14 +19,16 @@ function App() {
     <Routes>
 
       <Route path="/" element={<Layout />}>
-        {/* public routes */}
-        <Route path="login" element={<Login />} />
-        <Route path="uauthorized" element={<Unauthorized />} />
-
         {/* private routes */}
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
         </Route>
+
+        {/* public routes */}
+        <Route path="login" element={<Login />} />
+        <Route path="uauthorized" element={<Unauthorized />} />
+
+
 
         {/* Catch Err if other routes */}
         <Route path="*" element={<Missing />} />

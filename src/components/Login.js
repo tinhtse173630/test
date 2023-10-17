@@ -12,8 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
 
   const { setAuth } = useAuth();
-  const navigate = useNavigate();
-
+  
 
   // Replace with your actual Google OAuth Client ID
   const login = useGoogleLogin({
@@ -25,12 +24,14 @@ function Login() {
         }
         );
         const userData = res.data;
-
+       
         // Check if the email ends with "@fpt.edu.vn" or "@fe.edu.vn"
         if (userData.email && (userData.email.endsWith('@fpt.edu.vn') || userData.email.endsWith('@fe.edu.vn'))) {
           console.log(userData);
           // Handle user data here
-
+          setAuth({
+            user: userData
+          })
 
           // After successful login, navigate to the Home page
           navigate('/');
@@ -47,6 +48,7 @@ function Login() {
     },
   });
 
+  const navigate = useNavigate();
 
 
 
